@@ -8,12 +8,13 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var app = express();
+var app = express(),
+server = http.createServer(app);
 
-var io = require('socket.io').listen(app);
+var io = require('socket.io').listen(server);
 
 app.configure('all', function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 5000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -34,6 +35,6 @@ io.sockets.on('connection', function(socket){
    socket.emit("news", {hello: "world"});
 });
 
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
