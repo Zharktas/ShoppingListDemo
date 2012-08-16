@@ -6,11 +6,18 @@ block file
 
 block scripts
   script
+    var socket = io.connect("http://localhost:5000");
+    socket.on("update page", function(data){
+
+      $("#contents").html(data.data);
+    });
     $(document).ready(function(){
       $("#contents").bind('input', function(text){
-        console.log("Elements contains: " + this.innerHTML);
+        socket.emit("update contents", {data: this.innerHTML});
       });
     });
+
+
 block content
   block scripts
   block file

@@ -12,6 +12,7 @@ var app = express(),
 server = http.createServer(app);
 
 var io = require('socket.io').listen(server);
+routes.setIO(io);
 
 app.configure('all', function(){
   app.set('port', process.env.PORT || 5000);
@@ -31,9 +32,7 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
-io.sockets.on('connection', function(socket){
-   socket.emit("news", {hello: "world"});
-});
+
 
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
