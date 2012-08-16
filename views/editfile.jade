@@ -1,0 +1,16 @@
+extends layout
+
+block file
+  #contents(contenteditable="true")
+    p= contents
+
+block scripts
+  script
+    $(document).ready(function(){
+      $("#contents").bind('input', function(text){
+        console.log("Elements contains: " + this.innerHTML);
+      });
+    });
+block content
+  block scripts
+  block file
