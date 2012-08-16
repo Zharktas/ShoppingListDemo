@@ -20,6 +20,22 @@ exports.setIO = function (socket){
 
 
 
-exports.index = function(req, res){
-  res.render('editfile', { title: 'Express', contents: contents });
+exports.editlist = function(req, res){
+  res.render('editfile', { title: 'Shopping', contents: contents });
+};
+
+exports.index = function(req,res){
+    res.render('index',{title: 'Shopping'});
+};
+
+exports.newlist = function(req,res){
+
+};
+
+exports.viewlist = function(req, res){
+
+};
+
+exports.lists = function(req,res){
+
 };

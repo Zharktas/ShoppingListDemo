@@ -38,7 +38,10 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-
+app.get('/new', routes.newlist);
+app.get('/lists', routes.lists);
+app.get('/edit/:id', routes.editlist);
+app.get('/view/:id', routes.viewlist);
 
 
 server.listen(app.get('port'), function(){
