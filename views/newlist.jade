@@ -1,0 +1,27 @@
+extends layout
+
+block scripts
+  script
+    var socket = io.connect();
+    var id = #{list.id};
+    var name = "#{list.name}";
+    socket.emit('new list', {id: id, name: name});
+    $(document).ready(function(){
+      $("h1#title").keypress(function(e){ return e.which != 13; });
+      $("h1#title").bind('input', function(){
+        socket.emit("update title", {id: id, name: this.innerText});
+      });
+      $("ul#list").bind('input', function(){
+        var content = $("li");
+        var items = [];
+        content.each(function(){
+          items.push($(this).text());
+        })
+        socket.emit("update list", {id: id, items: items});
+      });
+    });
+block content
+  block scripts
+  h1#title(contenteditable=true)= list.name
+  ul#list(contenteditable=true)
+    li Uusi tavara

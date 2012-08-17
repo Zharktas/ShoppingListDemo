@@ -1,8 +1,28 @@
 extends layout
 
+block scripts
+  script
+    var socket = io.connect();
+    socket.on('add list', function(list){
+      var lists = $("li").get();
+      lists.splice(4);
+      var newlists = $("<li id=" + list.id +">" + list.name + "</li>").get().concat(lists);
+      $("ul").empty().append(newlists);
+    });
+    socket.on('update list', function(list){
+      var li = $("li#" + list.id);
+      if ( li.length == 1 ){
+        li.text(list.name);
+      }
+    });
+
 block content
+  block scripts
   #container
     .menu
-      a(href="new") Uusi lista
+      a(href="new?id="+ lists.length) Uusi lista
     .menu
       a(href="lists") Vanhat listat
+      ul
+        each list in lists
+          li(id=list.id)= list.name
