@@ -6,11 +6,11 @@ block scripts
     socket.on('add list', function(list){
       var lists = $("li").get();
       lists.splice(4);
-      var newlists = $("<li id=" + list.id +">" + list.name + "</li>").get().concat(lists);
+      var newlists = $("<li id=" + list.id +"><a href='/view/'" + list.id + ">" + list.name + "</a></li>").get().concat(lists);
       $("ul").empty().append(newlists);
     });
     socket.on('update title', function(list){
-      var li = $("li#" + list.id);
+      var li = $("li#" + list.id + " a");
       if ( li.length == 1 ){
         li.text(list.name);
       }
