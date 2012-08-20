@@ -23,8 +23,9 @@ block scripts
       }
     });
     $(document).ready(function(){
-      $("h1#title").keypress(function(e){ return e.which != 13; });
-      $("h1#title").bind('input', function(){
+      $("h1#title").keypress(function(e){ alert(e.which + " " + e.keyCode + " " + e.charCode);
+      return e.which != 13; });
+      $("h1#title").bind('input', function(e){
         socket.emit("update title", {id: id, name: this.innerText});
       });
 
