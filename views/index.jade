@@ -9,7 +9,7 @@ block scripts
       var newlists = $("<li id=" + list.id +">" + list.name + "</li>").get().concat(lists);
       $("ul").empty().append(newlists);
     });
-    socket.on('update list', function(list){
+    socket.on('update title', function(list){
       var li = $("li#" + list.id);
       if ( li.length == 1 ){
         li.text(list.name);
@@ -25,4 +25,5 @@ block content
       a(href="lists") Vanhat listat
       ul
         each list in lists
-          li(id=list.id)= list.name
+          li(id=list.id)
+            a(href='view/' + list.id)= list.name

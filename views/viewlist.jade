@@ -1,0 +1,19 @@
+extends layout
+
+block scripts
+  script
+    function markDone(listid, itemid){
+      $.get('/done/' + listid + '/' + itemid, function(data){
+        if ( data.done == true ){
+          $("li#" + itemid).css('text-decoration', 'line-through');
+        }
+      });
+    }
+
+block content
+  block scripts
+  h1#title= list.name
+  ul#list
+    each item in list.items
+      li(id=item.id) #{item.name}
+        a(onclick="markDone(#{list.id}, #{item.id})") Haettu

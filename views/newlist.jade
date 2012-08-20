@@ -6,6 +6,22 @@ block scripts
     var id = #{list.id};
     var name = "#{list.name}";
     socket.emit('new list', {id: id, name: name});
+    socket.on('update title', function(title){
+      if ( id == title.id ){
+        $("h1#title").text(title.name);
+      }
+    });
+    socket.on('update items', function(list){
+      if ( id == list.id ){
+        var ul = $("ul");
+        ul.empty();
+        for ( var i in list.items ){
+          if ( list.items.hasOwnProperty(i) ){
+            ul.append("<li>" + list.items[i].name + "</li>");
+          }
+        }
+      }
+    });
     $(document).ready(function(){
       $("h1#title").keypress(function(e){ return e.which != 13; });
       $("h1#title").bind('input', function(){
@@ -17,7 +33,7 @@ block scripts
         content.each(function(){
           items.push($(this).text());
         })
-        socket.emit("update list", {id: id, items: items});
+        socket.emit("update items", {id: id, items: items});
       });
     });
 block content

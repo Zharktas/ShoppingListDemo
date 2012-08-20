@@ -4,7 +4,8 @@
  */
 
 var contents = "Hi thar!";
-var lists = [{id: 0, name: "foo", items: []}];
+var categories = ["undefined", "Kasvis", "Liha"];
+var lists = [{id: 0, name: "foo", items: [{id: 0, name: "bar", category: 0, done: false}]}];
 
 
 var io;
@@ -25,12 +26,12 @@ exports.setIO = function (socket){
 
         socket.on('update title', function(list){
             lists[list.id].name = list.name;
-            socket.broadcast.emit("update list", list);
+            socket.broadcast.emit("update title", list);
         });
 
-        socket.on('update list', function(list){
-             lists[list.id].items = list.items;
-            console.log(list.items);
+        socket.on('update items', function(list){
+            lists[list.id].items = list.items;
+            socket.broadcast.emit('update items', list) ;
         });
     });
 };
@@ -47,16 +48,26 @@ exports.index = function(req,res){
 
 exports.newlist = function(req,res){
     var newId = lists.length;
-    var newName = "Uusi lista"
+    var newName = "Uusi lista";
     lists.push({id: newId, name: newName});
     res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}} );
 
 };
 
 exports.viewlist = function(req, res){
-
+    var id = req.params.id;
+    res.render('viewlist', {title: 'shopping', list: lists[id]});
 };
 
 exports.lists = function(req,res){
+
+};
+
+exports.done = function(req,res){
+    var listid = req.params.listid;
+    var itemid = req.params.itemid;
+
+    lists[listid].items[itemid].done = true;
+    res.json({done: true});
 
 };

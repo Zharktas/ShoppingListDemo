@@ -42,6 +42,7 @@ app.get('/new', routes.newlist);
 app.get('/lists', routes.lists);
 app.get('/edit/:id', routes.editlist);
 app.get('/view/:id', routes.viewlist);
+app.get('/done/:listid/:itemid', routes.done);
 
 
 server.listen(app.get('port'), function(){
