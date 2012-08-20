@@ -27,6 +27,11 @@ block scripts
       $("h1#title").bind('input', function(){
         socket.emit("update title", {id: id, name: this.innerText});
       });
+      $("ul#list").keyup(function(e){
+        if( e.which == 13 ){
+          $(this).find("li").not($("select").parent()).append($("select").clone().get(0));
+        }
+      });
       $("ul#list").bind('input', function(){
         var content = $("li");
         var items = [];
@@ -41,3 +46,6 @@ block content
   h1#title(contenteditable=true)= list.name
   ul#list(contenteditable=true)
     li Uusi tavara
+      select(name="category)
+        each category, i in categories
+          option(value=i) #{category}

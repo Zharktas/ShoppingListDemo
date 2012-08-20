@@ -5,7 +5,7 @@ block scripts
     function markDone(listid, itemid){
       $.get('/done/' + listid + '/' + itemid, function(data){
         if ( data.done == true ){
-          $("li#" + itemid).css('text-decoration', 'line-through');
+          $("li#" + itemid).addClass("done");
         }
       });
     }
@@ -15,5 +15,8 @@ block content
   h1#title= list.name
   ul#list
     each item in list.items
-      li(id=item.id) #{item.name}
-        a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+      if item.done == true
+        li(id=item.id, class="done") #{item.name}
+      else
+        li(id=item.id) #{item.name}
+      a(onclick="markDone(#{list.id}, #{item.id})") Haettu

@@ -50,7 +50,7 @@ exports.newlist = function(req,res){
     var newId = lists.length;
     var newName = "Uusi lista";
     lists.push({id: newId, name: newName});
-    res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}} );
+    res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}, categories: categories} );
 
 };
 
