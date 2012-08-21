@@ -2,12 +2,29 @@ extends layout
 
 block scripts
   script
+
+    var layouts = !{JSON.stringify(layouts)};
+
     function markDone(listid, itemid){
       $.get('/done/' + listid + '/' + itemid, function(data){
         if ( data.done == true ){
           $("li#" + itemid).addClass("done");
         }
       });
+    }
+    function Sort(layout){
+      var sorted = [];
+      var items = $('li');
+
+      for ( var i in layouts[layout].order ){
+        items.each(function(index){
+          if ( $(this).attr('category') == layouts[layout].order[i] ){
+            sorted.push(items[index]);
+          }
+        });
+      }
+
+      $("ul#list").append(sorted);
     }
 
 block content
@@ -16,7 +33,11 @@ block content
   ul#list
     each item in list.items
       if item.done == true
-        li(id=item.id, class="done") #{item.name}
+        li(id=item.id, category=item.category, class="done") #{item.name}
+          a(onclick="markDone(#{list.id}, #{item.id})") Haettu
       else
-        li(id=item.id) #{item.name}
-      a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+        li(id=item.id, category=item.category) #{item.name}
+          a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+  select(name="sort", onchange="Sort(this.value)")
+    each layout, i in layouts
+      option(value=i) #{layout.name}

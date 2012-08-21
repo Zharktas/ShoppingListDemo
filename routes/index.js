@@ -4,8 +4,10 @@
  */
 
 var contents = "Hi thar!";
-var categories = ["undefined", "Kasvis", "Liha"];
+var categories = ["undefined", "Taloustavarat", "Kasvis", "Maito", "Liha"];
 var lists = [{id: 0, name: "foo", items: [{id: 0, name: "bar", category: 0, done: false}]}];
+
+var layouts = [{id: 0, name: "Järjestämätön", order: [0,1,2,3,4]}, {id: 1, name: "Duo", order: [0, 2, 4, 3, 1]}];
 
 
 var io;
@@ -49,14 +51,16 @@ exports.index = function(req,res){
 exports.newlist = function(req,res){
     var newId = lists.length;
     var newName = "Uusi lista";
-    lists.push({id: newId, name: newName});
+    lists.push({id: newId, name: newName, items: [{id:0, name: 'Uusi tavara', category: 0}]});
+
     res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}, categories: categories} );
 
 };
 
 exports.viewlist = function(req, res){
     var id = req.params.id;
-    res.render('viewlist', {title: 'shopping', list: lists[id]});
+    console.log(lists[id]);
+    res.render('viewlist', {title: 'shopping', list: lists[id], layouts: layouts});
 };
 
 exports.lists = function(req,res){

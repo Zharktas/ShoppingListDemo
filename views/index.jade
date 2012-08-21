@@ -6,7 +6,7 @@ block scripts
     socket.on('add list', function(list){
       var lists = $("li").get();
       lists.splice(4);
-      var newlists = $("<li id=" + list.id +"><a href='/view/'" + list.id + ">" + list.name + "</a></li>").get().concat(lists);
+      var newlists = $("<li id=" + list.id +"><a href='/view/" + list.id + "'>" + list.name + "</a></li>").get().concat(lists);
       $("ul").empty().append(newlists);
     });
     socket.on('update title', function(list){

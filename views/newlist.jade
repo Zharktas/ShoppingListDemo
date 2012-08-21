@@ -57,6 +57,6 @@ block content
   h1#title(contenteditable=true)= list.name
   ul#list(contenteditable=true)
     li(id=0) Uusi tavara
-      select(name="category)
+      select(name="category")
         each category, i in categories
           option(value=i) #{category}
