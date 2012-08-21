@@ -61,6 +61,7 @@ exports.viewlist = function(req, res){
 
 exports.lists = function(req,res){
 
+    res.json({lists: lists});
 };
 
 exports.done = function(req,res){

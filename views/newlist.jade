@@ -29,20 +29,34 @@ block scripts
       });
 
       $("ul#list").bind('input', function(){
-        $(this).find("li").not($("select").parent()).append($("select:first").clone());
-        var content = $("li");
-        var items = [];
-        content.each(function(){
-          items.push($(this).text());
-        })
-        socket.emit("update items", {id: id, items: items});
+        var lis = $(this).find("li");
+        lis.each(function(index){
+          $(this).attr('id', index);
+        });
+        lis.not($("select").parent()).append($("select:first").clone());
+
+        SendList(lis);
+      });
+
+      $("ul#list li").live('change', function(){
+        var lis = $("ul#list li");
+        SendList(lis);
       });
     });
+
+    function SendList(content){
+      var items = [];
+      content.each(function(index){
+        var name = $(this).clone().children().remove().end().text();
+        items.push({id: index, name: name, category: $("li#" + index + " select").val()} );
+      })
+      socket.emit("update items", {id: id, items: items});
+    }
 block content
   block scripts
   h1#title(contenteditable=true)= list.name
   ul#list(contenteditable=true)
-    li Uusi tavara
+    li(id=0) Uusi tavara
       select(name="category)
         each category, i in categories
           option(value=i) #{category}
