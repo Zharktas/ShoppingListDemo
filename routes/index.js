@@ -51,7 +51,7 @@ exports.index = function(req,res){
 exports.newlist = function(req,res){
     var newId = lists.length;
     var newName = "Uusi lista";
-    lists.push({id: newId, name: newName, items: [{id:0, name: 'Uusi tavara', category: 0}]});
+    lists.push({id: newId, name: newName, items: [{id:0, name: 'Uusi tavara', category: 0, done: false}]});
 
     res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}, categories: categories} );
 

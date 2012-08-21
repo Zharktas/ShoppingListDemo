@@ -26,6 +26,12 @@ block scripts
 
       $("ul#list").append(sorted);
     }
+    var socket = io.connect();
+    socket.on('update items', function(list){
+      for ( var i in list.items ){
+        $("li#" + list.items[i].id).text(list.items[i].name);
+      }
+    });
 
 block content
   block scripts
