@@ -72,7 +72,7 @@ exports.done = function(req,res){
     var listid = req.params.listid;
     var itemid = req.params.itemid;
 
-    lists[listid].items[itemid].done = true;
-    res.json({done: true});
+    lists[listid].items[itemid].done = !lists[listid].items[itemid].done;
+    res.json({done: lists[listid].items[itemid].done});
 
 };

@@ -10,6 +10,9 @@ block scripts
         if ( data.done == true ){
           $("li#" + itemid).addClass("done");
         }
+        else if( data.done == false ){
+          $("li#" + itemid).removeClass("done");
+        }
       });
     }
     function Sort(layout){
@@ -37,18 +40,17 @@ block content
   block scripts
   #container
     .item
+      a(href="/edit/" + list.id) Muokkaa
       h1#title= list.name
+      select(name="sort", onchange="Sort(this.value)")
+        each layout, i in layouts
+          option(value=i) #{layout.name}
     .item
       ul#list
         each item in list.items
           if item.done == true
-            li(id=item.id, category=item.category, class="done") #{item.name}
-              a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+            li(onclick="markDone(#{list.id}, #{item.id})",id=item.id, category=item.category, class="done") #{item.name}
           else
-            li(id=item.id, category=item.category) #{item.name}
-              a(onclick="markDone(#{list.id}, #{item.id})") Haettu
-      select(name="sort", onchange="Sort(this.value)")
-        each layout, i in layouts
-          option(value=i) #{layout.name}
+            li(onclick="markDone(#{list.id}, #{item.id})", id=item.id, category=item.category) #{item.name}
     .item
       a(onclick="history.back()") Takaisin
