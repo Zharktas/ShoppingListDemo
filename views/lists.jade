@@ -17,7 +17,10 @@ block scripts
 block content
   block scripts
   #container
-    ul
-      each list in lists
-        li(id=list.id)
-          a(href='view/' + list.id)= list.name
+    .item
+      ul
+        each list in lists
+          li(id=list.id)
+            a(href='view/' + list.id)= list.name
+    .item
+          a(onclick="history.back()") Takaisin

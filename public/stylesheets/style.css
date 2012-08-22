@@ -26,6 +26,7 @@ a {
 
 .item ul{
     list-style-type: none;
+    padding: 0;
 }
 .item li{
     overflow: hidden;

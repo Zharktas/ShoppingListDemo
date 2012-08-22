@@ -36,15 +36,19 @@ block scripts
 block content
   block scripts
   #container
-    h1#title= list.name
-    ul#list
-      each item in list.items
-        if item.done == true
-          li(id=item.id, category=item.category, class="done") #{item.name}
-            a(onclick="markDone(#{list.id}, #{item.id})") Haettu
-        else
-          li(id=item.id, category=item.category) #{item.name}
-            a(onclick="markDone(#{list.id}, #{item.id})") Haettu
-    select(name="sort", onchange="Sort(this.value)")
-      each layout, i in layouts
-        option(value=i) #{layout.name}
+    .item
+      h1#title= list.name
+    .item
+      ul#list
+        each item in list.items
+          if item.done == true
+            li(id=item.id, category=item.category, class="done") #{item.name}
+              a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+          else
+            li(id=item.id, category=item.category) #{item.name}
+              a(onclick="markDone(#{list.id}, #{item.id})") Haettu
+      select(name="sort", onchange="Sort(this.value)")
+        each layout, i in layouts
+          option(value=i) #{layout.name}
+    .item
+          a(onclick="history.back()") Takaisin
