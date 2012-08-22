@@ -47,7 +47,7 @@ block scripts
     function SendList(content){
       var items = [];
       content.each(function(index){
-        var name = $(this).clone().children().remove().end().text();
+        var name = $(this).find('span').text();
         items.push({id: index, name: name, category: $("li#" + index + " select").val()} );
       })
       socket.emit("update items", {id: id, items: items});
