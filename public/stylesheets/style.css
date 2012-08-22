@@ -27,6 +27,9 @@ a {
 .item ul{
     list-style-type: none;
 }
+.item li{
+    overflow: hidden;
+}
 
 .item h1{
     padding: 0;
@@ -35,7 +38,7 @@ a {
 }
 
 .item select{
-    float: right;
+    float: left;
     font-size: 10px;
 }
 

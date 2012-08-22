@@ -33,7 +33,7 @@ block scripts
         lis.each(function(index){
           $(this).attr('id', index);
         });
-        lis.not($("select").parent()).append($("select:first").clone());
+        lis.not($("select").parent()).prepend($("select:first").clone());
 
         SendList(lis);
       });
@@ -59,7 +59,8 @@ block content
       h1#title(contenteditable=true)= list.name
     .item
       ul#list(contenteditable=true)
-        li(id=0) Uusi tavara
+        li(id=0)
           select(name="category")
             each category, i in categories
               option(value=i) #{category}
+          span Uusi tavara
