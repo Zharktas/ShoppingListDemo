@@ -1,0 +1,22 @@
+extends layout
+
+block scripts
+  script
+    var socket = io.connect();
+    socket.on('add list', function(list){
+      var newlist = $("<li id=" + list.id +"><a href='/view/" + list.id + "'>" + list.name + "</a></li>");
+      $("ul").prepend(newlist);
+    });
+    socket.on('update title', function(list){
+      var li = $("li#" + list.id + " a");
+        if ( li.length == 1 ){
+          li.text(list.name);
+        }
+    });
+
+block content
+  block scripts
+  ul
+    each list in lists
+      li(id=list.id)
+        a(href='view/' + list.id)= list.name

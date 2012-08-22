@@ -45,7 +45,7 @@ exports.editlist = function(req, res){
 };
 
 exports.index = function(req,res){
-    res.render('index',{title: 'Shopping', lists: lists.slice(-5)});
+    res.render('index',{title: 'Shopping', lists: lists.slice(-5).reverse()});
 };
 
 exports.newlist = function(req,res){
@@ -65,7 +65,7 @@ exports.viewlist = function(req, res){
 
 exports.lists = function(req,res){
 
-    res.json({lists: lists});
+    res.render("lists", {title: 'shopping', lists: lists.slice(0).reverse()});
 };
 
 exports.done = function(req,res){
