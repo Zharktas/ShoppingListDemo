@@ -1,10 +1,27 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: #dbdfef;
+
 }
 
 a {
   color: #00B7FF;
+}
+#container{
+    width: 95%;
+    padding: 0px;
+    margin: 0px;
+    background: #f2eeff;
+}
+.menu{
+    padding: 5px 0px;
+    margin: 10px 0px;
+
+    border-radius: 5px;
+    background: #ffffff;
+    text-align: center;
+    font-size: 2em;
 }
 
 .done{
