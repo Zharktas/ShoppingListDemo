@@ -59,10 +59,14 @@ block content
       h1#title(contenteditable=true)= list.name
     .item
       ul#list(contenteditable=true)
-        li(id=0)
-          select(name="category")
-            each category, i in categories
-              option(value=i) #{category}
-          span Uusi tavara
+        each item in list.items
+          li(id=item.id)
+            select(name="category")
+              each category, i in categories
+                if ( item.category == i )
+                  option(value=i, selected=true) #{category}
+                else
+                  option(value=i) #{category}
+            span #{item.name}
     .item
       a(onclick="history.back()") Takaisin

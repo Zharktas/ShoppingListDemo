@@ -4,7 +4,7 @@
  */
 
 var contents = "Hi thar!";
-var categories = ["undefined", "Taloustavarat", "Kasvis", "Maito", "Liha"];
+var categories = ["Kategoria", "Taloustavarat", "Kasvis", "Maito", "Liha"];
 var lists = [{id: 0, name: "foo", items: [{id: 0, name: "bar", category: 0, done: false}]}];
 
 var layouts = [{id: 0, name: "Järjestämätön", order: [0,1,2,3,4]}, {id: 1, name: "Duo", order: [0, 2, 4, 3, 1]}];
@@ -41,7 +41,8 @@ exports.setIO = function (socket){
 
 
 exports.editlist = function(req, res){
-  res.render('editfile', { title: 'Shopping', contents: contents });
+    var id = req.params.id;
+    res.render('editlist', { title: 'Shopping', list: lists[id], categories: categories });
 };
 
 exports.index = function(req,res){
@@ -51,9 +52,10 @@ exports.index = function(req,res){
 exports.newlist = function(req,res){
     var newId = lists.length;
     var newName = "Uusi lista";
-    lists.push({id: newId, name: newName, items: [{id:0, name: 'Uusi tavara', category: 0, done: false}]});
+    var items = [{id:0, name: 'Uusi tavara', category: 0, done: false}];
+    lists.push({id: newId, name: newName, items: items});
 
-    res.render('newlist',{title: 'shopping', list: {id: newId, name: newName}, categories: categories} );
+    res.render('editlist',{title: 'shopping', list: {id: newId, name: newName, items: items}, categories: categories} );
 
 };
 
