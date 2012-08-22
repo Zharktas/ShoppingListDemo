@@ -16,7 +16,8 @@ block scripts
 
 block content
   block scripts
-  ul
-    each list in lists
-      li(id=list.id)
-        a(href='view/' + list.id)= list.name
+  #container
+    ul
+      each list in lists
+        li(id=list.id)
+          a(href='view/' + list.id)= list.name

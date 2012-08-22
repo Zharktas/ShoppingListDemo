@@ -54,9 +54,12 @@ block scripts
     }
 block content
   block scripts
-  h1#title(contenteditable=true)= list.name
-  ul#list(contenteditable=true)
-    li(id=0) Uusi tavara
-      select(name="category")
-        each category, i in categories
-          option(value=i) #{category}
+  #container
+    .item
+      h1#title(contenteditable=true)= list.name
+    .item
+      ul#list(contenteditable=true)
+        li(id=0) Uusi tavara
+          select(name="category")
+            each category, i in categories
+              option(value=i) #{category}
