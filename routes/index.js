@@ -35,6 +35,7 @@ exports.setIO = function (socket){
             lists[list.id].items = list.items;
             socket.broadcast.emit('update items', list) ;
         });
+
     });
 };
 

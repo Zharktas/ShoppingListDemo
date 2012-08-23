@@ -40,9 +40,9 @@ block content
   block scripts
   #container
     .item
-      a(href="/edit/" + list.id) Muokkaa
+      a(href="/edit/" + list.id, id="edit") Muokkaa
       h1#title= list.name
-      select(name="sort", onchange="Sort(this.value)")
+      select(id="sort", name="sort", onchange="Sort(this.value)")
         each layout, i in layouts
           option(value=i) #{layout.name}
     .item
