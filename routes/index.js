@@ -43,7 +43,7 @@ exports.setIO = function (socket){
 
 exports.editlist = function(req, res){
     var id = req.params.id;
-    res.render('editlist', { title: 'Shopping', list: lists[id], categories: categories });
+    res.render('editlist', { title: 'Shopping', list: lists[id], categories: categories, newitem: false });
 };
 
 exports.index = function(req,res){
@@ -56,7 +56,7 @@ exports.newlist = function(req,res){
     var items = [{id:0, name: 'Uusi tavara', category: 0, done: false}];
     lists.push({id: newId, name: newName, items: items});
 
-    res.render('editlist',{title: 'shopping', list: {id: newId, name: newName, items: items}, categories: categories} );
+    res.render('editlist',{title: 'shopping', list: {id: newId, name: newName, items: items}, categories: categories, newitem: true} );
 
 };
 

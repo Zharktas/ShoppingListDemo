@@ -5,7 +5,9 @@ block scripts
     var socket = io.connect();
     var id = #{list.id};
     var name = "#{list.name}";
-    socket.emit('new list', {id: id, name: name});
+    if ( #{newitem} == true ){
+      socket.emit('new list', {id: id, name: name});
+    }
     socket.on('update title', function(title){
       if ( id == title.id ){
         $("h1#title").text(title.name);
@@ -13,11 +15,17 @@ block scripts
     });
     socket.on('update items', function(list){
       if ( id == list.id ){
+        var select = $('select:first');
         var ul = $("ul");
         ul.empty();
         for ( var i in list.items ){
           if ( list.items.hasOwnProperty(i) ){
-            ul.append("<li>" + list.items[i].name + "</li>");
+            var li = $("<li id=" +list.items[i].id + "><span>" + list.items[i].name + "</span></li>");
+            var newselect = select.clone();
+            newselect.find('option').removeAttr('selected');
+            newselect.find('[value=' + list.items[i].category + ']').attr('selected', true);
+            li.prepend(newselect);
+            ul.append(li);
           }
         }
       }
