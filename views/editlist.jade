@@ -77,4 +77,7 @@ block content
                   option(value=i) #{category}
             span #{item.name}
     .item
-      a(onclick="window.location.href = document.referrer;") Takaisin
+      if newitem == true
+        a(href="/") Takaisin
+      else
+        a(href="/view/" + list.id) Takaisin
