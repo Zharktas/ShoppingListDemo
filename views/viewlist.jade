@@ -53,4 +53,4 @@ block content
           else
             li(onclick="markDone(#{list.id}, #{item.id})", id=item.id, category=item.category) #{item.name}
     .item
-      a(onclick="history.back()") Takaisin
+      a(onclick="window.location.href = document.referrer;") Takaisin
