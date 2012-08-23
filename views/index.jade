@@ -15,15 +15,19 @@ block scripts
         li.text(list.name);
       }
     });
+    function flipforward(callback){
+      $(".item").addClass('flipforward');
+      setTimeout(callback, 1000);
+    }
 
 block content
   block scripts
   #container
     .item
-      a(href="new?id="+ lists.length) Uusi lista
+      a(onclick="flipforward(function(){window.location='new?id=#{lists.length}';})") Uusi lista
     .item
-      a(href="lists") Vanhat listat
+      a(onclick="flipforward(function(){window.location='lists';})") Vanhat listat
       ul
         each list in lists
           li(id=list.id)
-            a(href='view/' + list.id)= list.name
+            a(onclick="flipforward(function(){window.location='view/#{list.id}';})")= list.name

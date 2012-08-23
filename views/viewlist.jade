@@ -35,6 +35,10 @@ block scripts
         $("li#" + list.items[i].id).text(list.items[i].name);
       }
     });
+    function flipbackward(callback){
+      $(".item").addClass('flipbackward');
+      setTimeout(callback, 1000);
+    }
 
 block content
   block scripts

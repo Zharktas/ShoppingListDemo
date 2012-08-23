@@ -13,6 +13,7 @@ a {
     margin: 0;
     background: #f2eeff;
     border-radius: 5px;
+    -webkit-perspective: 800px;
 }
 .item{
     padding: 5px 0;
@@ -21,7 +22,17 @@ a {
     background: #ffffff;
     text-align: center;
     font-size: 14px;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 1s;
 
+}
+
+.flipforward{
+    -webkit-transform: rotateY( 180deg );
+}
+
+.flipbackward{
+    -webkit-transform: rotateY( -180deg );
 }
 
 .item ul{
@@ -59,3 +70,4 @@ a {
 .done{
     text-decoration: line-through;
 }
+
