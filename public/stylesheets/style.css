@@ -14,6 +14,9 @@ a {
     background: #f2eeff;
     border-radius: 5px;
     -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
 }
 .item{
     padding: 5px 0;
@@ -22,17 +25,29 @@ a {
     background: #ffffff;
     text-align: center;
     font-size: 14px;
-    -webkit-transform-style: flat;
     -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
 
 }
 
 .flipforward{
     -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
 }
 
 .flipbackward{
     -webkit-transform: rotateY( -180deg );
+    -moz-transform: rotateY( -180deg );
+    -o-transform: rotateY( -180deg );
+    transform: rotateY( -180deg );
 }
 
 .item ul{
