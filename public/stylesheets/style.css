@@ -22,7 +22,7 @@ a {
     background: #ffffff;
     text-align: center;
     font-size: 14px;
-    -webkit-transform-style: preserve-3d;
+    -webkit-transform-style: flat;
     -webkit-transition: -webkit-transform 1s;
 
 }
@@ -57,13 +57,13 @@ a {
 
 #edit{
     position: absolute;
-    top: 14px;
+    top: 5px;
     right: 14px;
 }
 
 #sort{
     position: absolute;
-    top: 14px;
+    top: 3px;
     left: 14px;
 }
 

@@ -62,8 +62,13 @@ exports.newlist = function(req,res){
 
 exports.viewlist = function(req, res){
     var id = req.params.id;
-    console.log(lists[id]);
-    res.render('viewlist', {title: 'shopping', list: lists[id], layouts: layouts});
+    var ref = req.header('referer');
+    if (ref.indexOf("lists") != -1){
+        res.render('viewlist', {title: 'shopping', list: lists[id], layouts: layouts, path: "lists"});
+    }
+    else{
+        res.render('viewlist', {title: 'shopping', list: lists[id], layouts: layouts, path: "/"});
+    }
 };
 
 exports.lists = function(req,res){

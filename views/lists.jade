@@ -4,7 +4,7 @@ block scripts
   script
     var socket = io.connect();
     socket.on('add list', function(list){
-      var newlist = $("<li id=" + list.id +"><a href='/view/" + list.id + "'>" + list.name + "</a></li>");
+      var newlist = $("<li id=" + list.id +"><a onclick='flipforward(function(){window.location = \'/view/\' + list.id)'>" + list.name + "</a></li>");
       $("ul").prepend(newlist);
     });
     socket.on('update title', function(list){
@@ -13,6 +13,10 @@ block scripts
           li.text(list.name);
         }
     });
+    function flipforward(callback){
+      $(".item").addClass('flipforward');
+      setTimeout(callback, 1000);
+    }
     function flipbackward(callback){
       $(".item").addClass('flipbackward');
       setTimeout(callback, 1000);
@@ -24,6 +28,6 @@ block content
       ul
         each list in lists
           li(id=list.id)
-            a(href='view/' + list.id)= list.name
+            a(onclick="flipforward(function(){window.location = '/view/#{list.id}';})")= list.name
     .item
       a(onclick="flipbackward(function(){window.location='/';})") Takaisin

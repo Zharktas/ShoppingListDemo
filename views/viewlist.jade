@@ -35,6 +35,10 @@ block scripts
         $("li#" + list.items[i].id).text(list.items[i].name);
       }
     });
+    function flipforward(callback){
+      $(".item").addClass('flipforward');
+      setTimeout(callback, 1000);
+    }
     function flipbackward(callback){
       $(".item").addClass('flipbackward');
       setTimeout(callback, 1000);
@@ -44,7 +48,7 @@ block content
   block scripts
   #container
     .item
-      a(href="/edit/" + list.id, id="edit") Muokkaa
+      a(onclick="flipforward(function(){window.location='/edit/#{list.id}';})", id="edit") Muokkaa
       h1#title= list.name
       select(id="sort", name="sort", onchange="Sort(this.value)")
         each layout, i in layouts
@@ -57,4 +61,7 @@ block content
           else
             li(onclick="markDone(#{list.id}, #{item.id})", id=item.id, category=item.category) #{item.name}
     .item
-      a(href="/") Takaisin
+      if path == "lists"
+        a(onclick="flipbackward(function(){window.location='/lists';})") Takaisin
+      else
+        a(onclick="flipbackward(function(){window.location='/';})") Takaisin

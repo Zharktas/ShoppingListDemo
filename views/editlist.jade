@@ -60,6 +60,15 @@ block scripts
       })
       socket.emit("update items", {id: id, items: items});
     }
+
+    function flipforward(callback){
+      $(".item").addClass('flipforward');
+      setTimeout(callback, 1000);
+    }
+    function flipbackward(callback){
+      $(".item").addClass('flipbackward');
+      setTimeout(callback, 1000);
+    }
 block content
   block scripts
   #container
@@ -78,6 +87,6 @@ block content
             span #{item.name}
     .item
       if newitem == true
-        a(href="/") Takaisin
+        a(onclick="flipbackward(function(){window.location='/';})") Takaisin
       else
-        a(href="/view/" + list.id) Takaisin
+        a(onclick="flipbackward(function(){window.location='/view/#{list.id}';})") Takaisin
