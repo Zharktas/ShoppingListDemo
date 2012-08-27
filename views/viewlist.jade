@@ -63,7 +63,7 @@ block content
   block scripts
   #container
     .item
-      a(onclick="flipforward(function(){window.location='/edit/#{list.id}';})", id="edit") Muokkaa
+      a(onclick="flipforward(function(){window.location='/edit/#{list.id}';})", id="edit") Edit
       h1#title= list.name
       select(id="sort", name="sort", onchange="Sort(this.value)")
         each layout, i in layouts
@@ -77,6 +77,6 @@ block content
             li(onclick="markDone(#{list.id}, #{item.id})", id=item.id, category=item.category) #{item.name}
     .item
       if path == "lists"
-        a(onclick="flipbackward(function(){window.location='/lists';})") Takaisin
+        a(onclick="flipbackward(function(){window.location='/lists';})") Back
       else
-        a(onclick="flipbackward(function(){window.location='/';})") Takaisin
+        a(onclick="flipbackward(function(){window.location='/';})") Back

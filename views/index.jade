@@ -24,9 +24,9 @@ block content
   block scripts
   #container
     .item
-      a(onclick="flipforward(function(){window.location='new?id=#{lists.length}';})") Uusi lista
+      a(onclick="flipforward(function(){window.location='new?id=#{lists.length}';})") New List
     .item
-      a(onclick="flipforward(function(){window.location='lists';})") Vanhat listat
+      a(onclick="flipforward(function(){window.location='lists';})") Old lists
       ul
         each list in lists
           li(id=list.id)

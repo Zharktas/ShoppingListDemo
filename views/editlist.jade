@@ -87,6 +87,6 @@ block content
             span #{item.name}
     .item
       if newitem == true
-        a(onclick="flipbackward(function(){window.location='/';})") Takaisin
+        a(onclick="flipbackward(function(){window.location='/';})") Back
       else
-        a(onclick="flipbackward(function(){window.location='/view/#{list.id}';})") Takaisin
+        a(onclick="flipbackward(function(){window.location='/view/#{list.id}';})") Back

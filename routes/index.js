@@ -3,11 +3,10 @@
  * GET home page.
  */
 
-var contents = "Hi thar!";
-var categories = ["Kategoria", "Taloustavarat", "Kasvis", "Maito", "Liha"];
+var categories = ["Category", "Housewares", "Vegetables", "Milks", "Meats"];
 var lists = [{id: 0, name: "foo", items: [{id: 0, name: "bar", category: 0, done: false}]}];
 
-var layouts = [{id: 0, name: "Järjestämätön", order: [0,1,2,3,4]}, {id: 1, name: "Duo", order: [0, 2, 4, 3, 1]}];
+var layouts = [{id: 0, name: "Unordered", order: [0,1,2,3,4]}, {id: 1, name: "Duo", order: [0, 2, 4, 3, 1]}];
 
 
 var io;
@@ -16,10 +15,7 @@ exports.setIO = function (socket){
     io = socket;
     io.sockets.on('connection', function(socket){
         socket.on('update contents', function(data){
-            contents = data.data;
-            socket.emit('saved');
-            console.log(contents);
-            socket.broadcast.emit("update page",{data: contents});
+            socket.broadcast.emit("update page",{data: data.data});
         });
 
         socket.on('new list', function(list){
@@ -52,11 +48,11 @@ exports.index = function(req,res){
 
 exports.newlist = function(req,res){
     var newId = lists.length;
-    var newName = "Uusi lista";
-    var items = [{id:0, name: 'Uusi tavara', category: 0, done: false}];
+    var newName = "New List";
+    var items = [{id:0, name: 'New Item', category: 0, done: false}];
     lists.push({id: newId, name: newName, items: items});
 
-    res.render('editlist',{title: 'shopping', list: {id: newId, name: newName, items: items}, categories: categories, newitem: true} );
+    res.render('editlist',{title: 'Shopping', list: {id: newId, name: newName, items: items}, categories: categories, newitem: true} );
 
 };
 
