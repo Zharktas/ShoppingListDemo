@@ -50,12 +50,22 @@ a {
     transform: rotateY( -180deg );
 }
 
+
+
 .item ul{
     list-style-type: none;
     padding: 0;
 }
 .item li{
     overflow: hidden;
+    -webkit-transition-property: top, bottom;
+    -moz-transition-property: top, bottom;
+    -o-transition-property: top, bottom;
+    transition-property: top, bottom;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
 }
 
 .item h1{

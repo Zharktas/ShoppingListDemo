@@ -27,7 +27,22 @@ block scripts
         });
       }
 
-      $("ul#list").append(sorted);
+      for ( var i in sorted ){
+        for ( var j in items ){
+          if ( sorted[i] === items[j] ){
+            if ( i != j ){
+              $(items[j]).offset($(items[i]).offset());
+            }
+          }
+        }
+      }
+
+      setTimeout(function(){
+        $(sorted).css('top', 0);
+        $(sorted).css('left', 0);
+        $(sorted).css('position', 'static');
+        $("ul#list").append(sorted);
+      }, 500);
     }
     var socket = io.connect();
     socket.on('update items', function(list){
