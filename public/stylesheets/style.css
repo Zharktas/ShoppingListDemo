@@ -1,7 +1,7 @@
 body {
 
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background: #dbdfef;
+    background: #b9efaa;
 
 }
 
@@ -11,7 +11,7 @@ a {
 #container{
     padding: 0;
     margin: 0;
-    background: #f2eeff;
+    background: #79ff65;
     border-radius: 5px;
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
@@ -22,7 +22,7 @@ a {
     padding: 5px 0;
     margin: 10px 0;
     border-radius: 5px;
-    background: #ffffff;
+    background: #c7ffc6;
     text-align: center;
     font-size: 14px;
     -webkit-transition: -webkit-transform 1s;
