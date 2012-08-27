@@ -73,6 +73,7 @@ block content
   block scripts
   #container
     .item
+      a(onclick="flipforward(function(){window.location='/view/#{list.id}';})", id="view") View
       h1#title(contenteditable=true)= list.name
     .item
       ul#list(contenteditable=true)

@@ -80,7 +80,7 @@ a {
     margin: 2px 10px;
 }
 
-#edit{
+#edit, #view{
     position: absolute;
     top: 5px;
     right: 14px;
